@@ -1,6 +1,5 @@
 <?php
 
-
 import('lib.pkp.classes.plugins.GenericPlugin');
 
 class TelegramNotifyPlugin extends GenericPlugin
@@ -22,6 +21,11 @@ class TelegramNotifyPlugin extends GenericPlugin
 
     }
 
+    public function getDescription()
+    {
+        return __('plugins.generic.telegramnotify.description');
+    }
+
     /**
      * Add a settings action to the plugin's entry in the
      * plugins list.
@@ -41,8 +45,6 @@ class TelegramNotifyPlugin extends GenericPlugin
             return $actions;
         }
 
-        // Create a LinkAction that will make a request to the
-        // plugin's `manage` method with the `settings` verb.
         $router = $request->getRouter();
         import('lib.pkp.classes.linkAction.request.AjaxModal');
         $linkAction = new LinkAction(
@@ -74,10 +76,10 @@ class TelegramNotifyPlugin extends GenericPlugin
         return $actions;
     }
 
-
     public function getDisplayName()
     {
         return __('plugins.generic.telegramnotify.displayName');
+
     }
 
     public function setWebhookHandler($hookName, $params)
@@ -98,11 +100,11 @@ class TelegramNotifyPlugin extends GenericPlugin
             case 'settings':
                 $context = $request->getContext();
 
-                AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON,  LOCALE_COMPONENT_PKP_MANAGER);
+                AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_MANAGER);
                 $templateMgr = TemplateManager::getManager($request);
 
                 $this->import('TelegramNotifySettingsForm');
-                $form = new TelegramNotifySettingsForm($this, $context->getId());
+                $form = new TelegramNotifySettingsForm($this, $context);
 
                 if ($request->getUserVar('save')) {
                     $form->readInputData();
@@ -116,11 +118,6 @@ class TelegramNotifyPlugin extends GenericPlugin
                 return new JSONMessage(TRUE, $form->fetch($request));
         }
         return parent::manage($args, $request);
-    }
-
-    public function getDescription()
-    {
-        return 'Send Notification to User Telegram Account.';
     }
 
 

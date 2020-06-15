@@ -1,22 +1,14 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 import('classes.handler.Handler');
 
 class TelegramWebhookHandler extends Handler
 {
 
-
     public function index($args, $request)
     {
 
-
         $t = new TelegramHandler($request->getContext()->getId());
-
         $update = json_decode(file_get_contents("php://input"), TRUE);
         $message = $update["message"];
 
@@ -26,10 +18,8 @@ class TelegramWebhookHandler extends Handler
 
         if ($update["message"]["contact"]) {
             $t->sendMessage($update["message"]["chat"]["id"], 'Send Contact');
-//            $t->sendMessage($update["message"]["chat"]["id"], );
             $t->setTelegramChatId($update["message"]["chat"]["id"], intval($update["message"]["contact"]["phone_number"]));
         }
-
 
     }
 
@@ -52,6 +42,20 @@ class TelegramHandler
         $dao = new UserDAO();
         $user = $dao->getById($user_id);
         return $user->getSetting('telegramChatId');
+    }
+
+    public function setWebhookUrl($token, $url)
+    {
+        $url = "https://api.telegram.org/bot" . $token . "/setWebhook?url=" . $url;
+        $ch = curl_init();
+        $optArray = [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => TRUE,
+        ];
+        curl_setopt_array($ch, $optArray);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
     }
 
     public function setTelegramChatId($chatId, $phoneNumber)
@@ -98,13 +102,11 @@ class TelegramHandler
             return TRUE;
         }
 
-        // remove "0", "+" from the beginning of the numbers
         if ($phoneA[0] == '0' || $phoneB[0] == '0' ||
             $phoneA[0] == '+' || $phoneB[0] == '+') {
             return $this->isEqualPhoneNumber(ltrim($phoneA, '0+'), ltrim($phoneB, '0+'));
         }
 
-        // change numbers if second is longer
         if (strlen($phoneA) < strlen($phoneB)) {
             return $this->isEqualPhoneNumber($phoneB, $phoneA);
         }
@@ -113,7 +115,6 @@ class TelegramHandler
             return FALSE;
         }
 
-        // is second number a first number ending
         $position = strrpos($phoneA, $phoneB);
         if ($position !== FALSE && ($position + strlen($phoneB) === strlen($phoneA))) {
             return TRUE;

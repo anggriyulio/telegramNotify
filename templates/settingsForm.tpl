@@ -1,13 +1,3 @@
-{**
- * plugins/generic/telegramnotify/templates/settingsForm.tpl
- *
- * Copyright (c) 2013-2019 Simon Fraser University
- * Copyright (c) 2003-2019 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- *
- * Piwik plugin settings
- *
- *}
 <div id="telegramNotify">
     <div id="description">{translate key="plugins.generic.telegramnotify.manager.settings.description"}</div>
 
@@ -30,7 +20,7 @@
         {/fbvFormSection}
 
         {fbvFormSection for="telegramStartMessage" title="plugins.generic.telegramnotify.manager.settings.telegramnotifyFirstMessage" description="plugins.generic.telegramnotify.manager.settings.telegramnotifyFirstMessageInstructions"}
-        {fbvElement type="text" id="telegramStartMessage" name="telegramStartMessage" value=$telegramStartMessage label="plugins.generic.telegramnotify.manager.settings.telegramnotifyFirstMessageRequired" required=true}
+        {fbvElement type="textarea" id="telegramStartMessage" name="telegramStartMessage" value=$telegramStartMessage label="plugins.generic.telegramnotify.manager.settings.telegramnotifyFirstMessageRequired" required=true}
         {/fbvFormSection}
 
         {/fbvFormArea}
