@@ -7,6 +7,9 @@ Integrating OJS Email Notifications with Telegram BOT.
 - Using HTTPS
 
 ## Configuration
+
+[Tutorial on Youtube](https://www.youtube.com/watch?v=hkSiFnQbV_Q) (Bahasa)
+
 #### Register a Telegram BOT
 - Create a Telegram BOT and get an API Key. Please see [https://core.telegram.org/bots#3-how-do-i-create-a-bot](https://core.telegram.org/bots#3-how-do-i-create-a-bot)
 
