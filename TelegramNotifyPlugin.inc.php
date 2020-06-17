@@ -124,13 +124,17 @@ class TelegramNotifyPlugin extends GenericPlugin
     function sendToTelegram($hookName, $args)
     {
         $this->import('TelegramWebhookHandler');
+        $telegramAllowedTags = "<b><i><u><strong><em><ins><strike><s><b><a><code><pre>";
 
+        $body = str_replace('<br>', PHP_EOL, $args[0]->getBody());
         $t = new TelegramHandler($this->getCurrentContextId());
+
         foreach ($this->parseRecipients($args[0]->getRecipients()) as $u) {
             $msg = "";
-            $msg .= "<strong>" . $args[0]->getSubject() . "</strong>\n\n";
-            $msg .= "" . strip_tags($args[0]->getBody());
+            $msg .= "<strong>" . htmlspecialchars($args[0]->getSubject()) . "</strong>" . PHP_EOL;
+            $msg .= "" . strip_tags($body, $telegramAllowedTags);
             $a = $t->sendMessage($t->getTelegramChatId($u['user_id']), $msg);
+            return FALSE;
 
         }
 

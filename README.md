@@ -2,7 +2,7 @@
 Integrating OJS Email Notifications with Telegram BOT.
 
 ## Requirements
-- OJS Versi >= 3.0.0
+- OJS Version >= 3.0.0
 - Using HTTPS
 
 ## Configuration
@@ -10,8 +10,8 @@ Integrating OJS Email Notifications with Telegram BOT.
 - Create a Telegram BOT and get an API Key. Please see [https://core.telegram.org/bots#3-how-do-i-create-a-bot](https://core.telegram.org/bots#3-how-do-i-create-a-bot)
 
 #### Plugin Installing
-- Download the latest version of this plugin [https://github.com/anggriyulio/telegramNotify/releases](https://github.com/anggriyulio/telegramNotify/releases). 
-- Extract to generic plugin directory or install via plugin manager.
+- Download the latest version of this plugin [https://github.com/anggriyulio/telegramNotify/archive/master.zip](https://github.com/anggriyulio/telegramNotify/archive/master.zip). 
+- Extract to generic plugin directory and rename to telegramNotify.
 - Enable the plugin
 - Set Telegram Bot Token in Plugin Setting section, also don forget to set the message for /start command and save it. 
 
