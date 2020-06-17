@@ -3,6 +3,7 @@ Integrating OJS Email Notifications with Telegram BOT.
 
 ## Requirements
 - OJS Version >= 3.0.0
+- Installed php cURL extension
 - Using HTTPS
 
 ## Configuration
