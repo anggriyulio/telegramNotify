@@ -17,7 +17,6 @@ class TelegramWebhookHandler extends Handler
         }
 
         if ($update["message"]["contact"]) {
-            $t->sendMessage($update["message"]["chat"]["id"], 'Send Contact');
             $t->setTelegramChatId($update["message"]["chat"]["id"], intval($update["message"]["contact"]["phone_number"]));
         }
 

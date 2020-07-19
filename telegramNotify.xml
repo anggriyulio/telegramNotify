@@ -1,0 +1,26 @@
+<plugin category="generic" product="telegramNotify">
+    <name locale="en_US">Telegram Notification</name>
+    <homepage>https://github.com/pkp/telegramNotify</homepage>
+
+    <summary locale="en_US">Integrate OJS Email Notification with Telegram BOT.</summary>
+
+    <description locale="en_US">
+        <![CDATA[Integrate OJS Email Notification with Telegram BOT. For more information please refer to <a href="https://github.com/anggriyulio/telegramNotify">https://github.com/anggriyulio/telegramNotify</a>]]></description>
+
+    <maintainer>
+        <name>Anggri Y Pernanda</name>
+        <institution>STKIP PGRI Sumatera Barat</institution>
+        <email>anggriyulio@gmail.com</email>
+    </maintainer>
+
+    <release date="2020-06-16" version="0.0.1.0" md5="754f653a462f6909bb43e0675ef3518f">
+        <package>
+            https://github.com/anggriyulio/telegramNotify/releases/download/v0.0.1-beta/telegramNotify-v0.0.1-beta.tar.gz
+        </package>
+
+        <compatibility application="ojs2">
+        <version>3.0.0.0</version>
+        <certification type="official"/>
+        <description>Beta version of Telegram Notification Plugin</description>
+    </release>
+</plugin>
